@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/12/31 21:02:24 by maelmahf         ###   ########.fr       */
+/*   Updated: 2024/12/31 21:24:11 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	child_proc(char **argv, char **env, int *fd)
 	close(fd[0]);
 	execute(argv[2], env);
 }
+
 void	parent_proc(char **argv, char **env, int *fd)
 {
 	int	fileout;
