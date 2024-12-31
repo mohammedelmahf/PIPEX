@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:46:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/12/31 21:08:33 by maelmahf         ###   ########.fr       */
+/*   Updated: 2024/12/31 21:12:06 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*find_path(char *cmd, char **envp)
 	if (!cmd || !*cmd)
 		return (NULL);
 	i = 0;
-	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == 0)
+	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == 0)
 		i++;
 	if (!envp[i])
 		return (NULL);
