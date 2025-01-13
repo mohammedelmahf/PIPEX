@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:30:37 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/13 14:04:37 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:27 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ int					found_line(t_list *list);
 void				trim_word(char *dst, const char *src, size_t index);
 int					check_node(char *s);
 void				del_nodes(t_list **lst, size_t i);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:46:26 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/13 10:34:04 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:21:12 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	open_file(char *file , int in_or_out)
+int	open_file(char *file, int in_or_out)
 {
-	int fd;
-	if(in_or_out == 0)
-		fd = open(file , O_RDONLY , 0777);
-	if(in_or_out == 1)
-		fd = open(file , O_RDONLY | O_CREAT | O_TRUNC , 0777);
-	if(in_or_out == 2)
-		fd = open(file, O_RDONLY | O_CREAT | O_APPEND, 0777);
-	if(fd == -1)
+	int	fd;
+
+	if (in_or_out == 0)
+		fd = open(file, O_RDONLY);
+	else if (in_or_out == 1)
+		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	else if (in_or_out == 2)
+		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	if (fd == -1)
 		error();
-	return(fd);
-		
+	return (fd);
 }
+
 void	execute(char *argv, char **env)
 {
 	char	**cmd;
@@ -56,6 +57,13 @@ void	execute(char *argv, char **env)
 		error();
 	}
 }
+
+void	handle_here_doc(char **av, int *fd_out)
+{
+	*fd_out = open_file(av[4], 2);
+	here_doc(av);
+}
+
 char	*find_path(char *cmd, char **envp)
 {
 	char	**paths;

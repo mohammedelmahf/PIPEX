@@ -6,11 +6,12 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:53:43 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/13 13:56:53 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:18 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 int	len_to_newline(t_list *list)
 {
 	int	i;

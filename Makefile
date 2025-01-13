@@ -2,7 +2,7 @@ NAME = pipex
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra 
 
 RM = rm -rf
 
@@ -15,7 +15,7 @@ SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c\
 				libft/libft.a\
 
 $(NAME) :
-	make all -C libft
+	make all -C libft	
 	gcc $(CFLAGS) $(SRCS) -o $(NAME)
 
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 16:13:04 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/01/13 18:13:43 by maelmahf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -49,8 +61,8 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 typedef struct s_list
 {
-    char *buff; 
-    struct s_list *next;
-} t_list;
+	void			*buff;
+	struct s_list	*next;
+}	t_list;
 
 #endif
