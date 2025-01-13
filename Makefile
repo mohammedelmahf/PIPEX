@@ -1,35 +1,36 @@
-# Define compiler
-CC = cc
-
-# Define CFLAGS (compiler flags)
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
-
-# Source code files
-SRCs = pipex.c pipex_utils.c 
-Libft = libft/libft.a
-
-# Executable name
 NAME = pipex
 
-# Main target (to build the executable)
-all: $(NAME)
+CC = gcc
 
-# How to build the executable
-$(NAME): $(SRCs) $(Libft)
-	$(CC) $(CFLAGS) $(SRCs) $(Libft) -o $(NAME)
+CFLAGS = -Werror -Wall -Wextra #-fsanitize=address
 
-$(Libft):
-	make -s -C libft
-	
-# Target to clean up object files
-clean:
-	rm -f $(NAME)
-	make clean -C libft
+RM = rm -rf
 
-# Target to clean up object files & the executable
-fclean: clean
-	rm -f $(NAME)
+SRCS = 	pipex/pipex.c\
+		pipex/pipex_utils.c\
+		libft/libft.a\
+
+SRCS_BONUS = 	pipex_bonus/pipex_bonus.c\
+				pipex_bonus/pipex_utils_bonus.c\
+				libft/libft.a\
+
+$(NAME) :
+	make all -C libft
+	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+
+
+all : $(NAME)
+
+fclean : clean
+	$(RM) $(NAME)
 	make fclean -C libft
 
-# Rebuild everything (clean first, then build)
-re: fclean all
+clean :
+	$(RM) $(NAME)
+	make clean -C libft
+
+re : fclean all
+
+bonus : clean
+	make all -C libft
+	gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
