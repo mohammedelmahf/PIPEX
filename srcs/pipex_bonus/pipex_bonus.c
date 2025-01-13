@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:42:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/13 11:19:32 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:56:07 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int main(int ac , char **av, char **env)
     
     if(ac < 5)
         error();
-    if(ft_strcmp(av[1], "here_doc") == 0)
+    if(ft_strncmp(av[1], "here_doc" , 8) == 0)
     {
         if(ac < 6)
             error();

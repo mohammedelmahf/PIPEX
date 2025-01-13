@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 19:43:19 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/12/31 21:23:47 by maelmahf         ###   ########.fr       */
+/*   Created: 2025/01/13 08:42:39 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/01/13 11:56:55 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_h
+# define PIPEX_BONUS_h
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
+# include "../libft/get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
 
+void    here_doc(char **av);
+int	    open_file(char *file , int in_or_out);
+void    here_doc_put_in(char **av,int *fd);
+void    pipe_do(char *av , char **env);
 void	error(void);
-void	child_proc(char **argv, char **env, int *fd);
-void	parent_proc(char **argv, char **env, int *fd);
-void	execute(char *argv, char **env);
 char	*find_path(char *cmd, char **envp);
+void	execute(char *argv, char **env);
 
 #endif

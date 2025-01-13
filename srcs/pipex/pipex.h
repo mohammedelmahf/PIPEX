@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 14:52:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/11/07 17:34:30 by maelmahf         ###   ########.fr       */
+/*   Created: 2024/12/28 19:43:19 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/01/13 11:44:09 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*ptr;
+# include "../libft/libft.h"
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
 
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst)
-	{
-		ptr = ft_lstlast(*lst);
-		ptr->next = new;
-	}
-	else
-		*lst = new;
-}
+void	error(void);
+void	child_proc(char **argv, char **env, int *fd);
+void	parent_proc(char **argv, char **env, int *fd);
+void	execute(char *argv, char **env);
+char	*find_path(char *cmd, char **envp);
+
+#endif

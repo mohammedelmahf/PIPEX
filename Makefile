@@ -1,36 +1,46 @@
+SRCS =  srcs/pipex/pipex.c \
+		srcs/pipex/pipex_utils.c \
+		srcs/libft/ft_isalpha.c srcs/libft/ft_isdigit.c srcs/libft/ft_isalnum.c srcs/libft/ft_isascii.c srcs/libft/ft_isprint.c srcs/libft/ft_strlen.c \
+		srcs/libft/ft_toupper.c srcs/libft/ft_tolower.c srcs/libft/ft_strchr.c srcs/libft/ft_strrchr.c srcs/libft/ft_strncmp.c \
+		srcs/libft/ft_memcpy.c srcs/libft/ft_memmove.c srcs/libft/ft_memset.c srcs/libft/ft_memcmp.c srcs/libft/ft_memchr.c srcs/libft/ft_bzero.c \
+		srcs/libft/ft_strnstr.c srcs/libft/ft_strlcpy.c srcs/libft/ft_strlcat.c srcs/libft/ft_atoi.c srcs/libft/ft_strdup.c srcs/libft/ft_calloc.c \
+		srcs/libft/ft_substr.c srcs/libft/ft_strjoin.c srcs/libft/ft_split.c srcs/libft/ft_itoa.c srcs/libft/ft_strmapi.c \
+		srcs/libft/ft_putchar_fd.c srcs/libft/ft_putstr_fd.c srcs/libft/ft_putendl_fd.c \
+		srcs/libft/ft_putnbr_fd.c srcs/libft/ft_strtrim.c  srcs/libft/ft_striteri.c 
+SRCS_BONUS =  srcs/pipex_bonus/pipex_bonus.c \
+		srcs/pipex_bonus/pipex_utils_bonus.c \
+		srcs/libft/ft_isalpha.c srcs/libft/ft_isdigit.c srcs/libft/ft_isalnum.c srcs/libft/ft_isascii.c srcs/libft/ft_isprint.c srcs/libft/ft_strlen.c \
+		srcs/libft/ft_toupper.c srcs/libft/ft_tolower.c srcs/libft/ft_strchr.c srcs/libft/ft_strrchr.c srcs/libft/ft_strncmp.c \
+		srcs/libft/ft_memcpy.c srcs/libft/ft_memmove.c srcs/libft/ft_memset.c srcs/libft/ft_memcmp.c srcs/libft/ft_memchr.c srcs/libft/ft_bzero.c \
+		srcs/libft/ft_strnstr.c srcs/libft/ft_strlcpy.c srcs/libft/ft_strlcat.c srcs/libft/ft_atoi.c srcs/libft/ft_strdup.c srcs/libft/ft_calloc.c \
+		srcs/libft/ft_substr.c srcs/libft/ft_strjoin.c srcs/libft/ft_split.c srcs/libft/ft_itoa.c srcs/libft/ft_strmapi.c \
+		srcs/libft/ft_putchar_fd.c srcs/libft/ft_putstr_fd.c srcs/libft/ft_putendl_fd.c \
+		srcs/libft/ft_putnbr_fd.c srcs/libft/ft_strtrim.c  srcs/libft/ft_striteri.c srcs/libft/get_next_line/get_next_line.c \
+		srcs/libft/get_next_line/get_next_line_utils.c
 NAME = pipex
+NAME_BONUS = pipex_bonus
+OBJS = ${SRCS:.c=.o}
+OBJS_BONUS = ${SRCS_BONUS:.c=.o}
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -Ilibft
+RM = rm -f
 
-CC = gcc
+all: ${NAME}
 
-CFLAGS = -Werror -Wall -Wextra #-fsanitize=address
+bonus: ${NAME_BONUS}
 
-RM = rm -rf
+.SECONDARY: ${OBJS} ${OBJS_BONUS}
 
-SRCS = 	pipex/pipex.c\
-		pipex/pipex_utils.c\
-		libft/libft.a\
+${NAME}: ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
-SRCS_BONUS = 	pipex_bonus/pipex_bonus.c\
-				pipex_bonus/pipex_utils_bonus.c\
-				libft/libft.a\
+${NAME_BONUS}: ${OBJS_BONUS}
+	${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME_BONUS}
 
-$(NAME) :
-	make all -C libft
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+clean:
+	${RM} ${OBJS} ${OBJS_BONUS}
 
+fclean: clean
+	${RM} ${NAME} ${NAME_BONUS}
 
-all : $(NAME)
-
-fclean : clean
-	$(RM) $(NAME)
-	make fclean -C libft
-
-clean :
-	$(RM) $(NAME)
-	make clean -C libft
-
-re : fclean all
-
-bonus : clean
-	make all -C libft
-	gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
+re: fclean all

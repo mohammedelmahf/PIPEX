@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:30:37 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/11/24 13:51:20 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:23:30 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include "../libft.h"
 typedef struct s_list
 {
-	char			*buff;
+	void			*content;
 	struct s_list	*next;
 }					t_list;
 

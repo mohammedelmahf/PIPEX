@@ -6,11 +6,12 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:29:02 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/11/24 14:01:32 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/13 12:22:48 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../libft.h"
 
 char	*get_next_line(int fd)
 {
