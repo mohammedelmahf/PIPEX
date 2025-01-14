@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:13:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/13 18:13:43 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:12:51 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 typedef struct s_list
 {
-	void			*buff;
+	char			*buff;
 	struct s_list	*next;
 }	t_list;
 
