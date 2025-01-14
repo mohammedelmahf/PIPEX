@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:30:37 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/14 16:01:09 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:20:49 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stddef.h>
 # include "../libft.h"
 
 char				*get_next_line(int fd);
