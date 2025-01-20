@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:46:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/13 18:14:11 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:35:36 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,7 @@ void	execute(char *argv, char **env)
 		error();
 	}
 	if (execve(path, cmd, env) == -1)
-	{
-		while (cmd[++i])
-			free(cmd[i]);
-		free(cmd);
 		error();
-	}
+		
 }
+

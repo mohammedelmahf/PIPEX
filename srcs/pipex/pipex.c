@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2024/12/31 21:24:11 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:59:47 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,12 @@ int	main(int argc, char **argv, char **env)
 			error();
 		if (pid == 0)
 			child_proc(argv, env, fd);
-		else
-		{
-			parent_proc(argv, env, fd);
-			waitpid(pid, NULL, 0);
-		}
+		waitpid(pid, NULL, 0);
+		parent_proc(argv, env, fd);
 	}
 	else
 	{
 		ft_putstr_fd("Error: Bad arguments\n", 2);
 		ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
-		exit(EXIT_FAILURE);
 	}
 }
