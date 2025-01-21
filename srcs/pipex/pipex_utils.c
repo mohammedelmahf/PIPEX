@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:46:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/15 17:35:36 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:33:06 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,58 @@ char	*find_path(char *cmd, char **envp)
 
 void	error(void)
 {
-	perror("");
+	perror("Error");
 	exit(EXIT_FAILURE);
 }
 
-void	execute(char *argv, char **env)
-{
-	char	**cmd;
-	int		i;
-	char	*path;
+// void	execute(char *argv, char **env)
+// {
+// 	char	**cmd;
+// 	int		i;
+// 	char	*path;
 
-	i = -1;
-	cmd = ft_split(argv, ' ');
-	path = find_path(cmd[0], env);
-	if (!path)
-	{
-		while (cmd[++i])
-			free(cmd[i]);
-		free(cmd);
-		error();
-	}
-	if (execve(path, cmd, env) == -1)
-		error();
+// 	i = -1;
+// 	cmd = ft_split(argv, ' ');
+// 	path = find_path(cmd[0], env);
+// 	if (!path)
+// 	{
+// 		while (cmd[++i])
+// 			free(cmd[i]);
+// 		free(cmd);
+// 		error();
+// 	}
+// 	if (execve(path, cmd, env) == -1)
+// 		error();
 		
-}
+// }
 
+void execute(char *argv, char **env)
+{
+    char **cmd;
+    char *path;
+    int i;
+
+    cmd = ft_split(argv, ' ');
+    if (!cmd)
+        error();
+        
+    path = find_path(cmd[0], env);
+    if (!path)
+    {
+        i = 0;
+        while (cmd[i])
+            free(cmd[i++]);
+        free(cmd);
+        error();
+    }
+    
+    if (execve(path, cmd, env) == -1)
+    {
+        free(path);
+        i = 0;
+        while (cmd[i])
+            free(cmd[i++]);
+        free(cmd);
+        error();
+    }
+}

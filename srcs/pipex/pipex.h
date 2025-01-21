@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:43:19 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/15 13:54:22 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:21:56 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	child_proc(char **argv, char **env, int *fd);
 void	parent_proc(char **argv, char **env, int *fd);
 void	execute(char *argv, char **env);
 char	*find_path(char *cmd, char **envp);
-
+    
 #endif
