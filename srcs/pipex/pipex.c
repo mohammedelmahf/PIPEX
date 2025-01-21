@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/21 23:25:45 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/21 23:33:20 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	child_proc(char **argv, char **env, int *fd)
 	dup2(filein, STDIN_FILENO);
 	close(fd[0]);
 	execute(argv[2], env);
+	error();
 }
 
 void	parent_proc(char **argv, char **env, int *fd)
@@ -36,25 +37,61 @@ void	parent_proc(char **argv, char **env, int *fd)
 	dup2(fileout, STDOUT_FILENO);
 	close(fd[1]);
 	execute(argv[3], env);
+	error();
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
-	pid_t	pid;
+	pid_t	pid1 , pid2;
 	
-	if (argc == 5)
-	{
-		if (pipe(fd) == -1)
-			error();
-		pid = fork();
-		if (pid == -1)
-			error();
-		if (pid == 0)
-			child_proc(argv, env, fd);
-		waitpid(pid, NULL, 0);
-		parent_proc(argv, env, fd);
-	}
+	// if (argc == 5)
+	// {
+	// 	if (pipe(fd) == -1)
+	// 		error();
+	// 	pid = fork();
+	// 	if (pid == -1)
+	// 		error();
+	// 	if (pid == 0)
+	// 		child_proc(argv, env, fd);
+	// 	waitpid(pid, NULL, 0);
+	// 	parent_proc(argv, env, fd);
+	// }
+	    if (argc == 5)
+    {
+        if (pipe(fd) == -1)
+            error();
+            
+        pid1 = fork();
+        if (pid1 == -1)
+            error();
+            
+        if (pid1 == 0)
+		{
+            child_proc(argv, env, fd);
+			exit(1);
+		}
+        pid2 = fork();  // Create second process
+        if (pid2 == -1)
+            error();
+            
+        if (pid2 == 0)
+        {  
+		    parent_proc(argv, env, fd);
+			exit(1);
+		}
+        // Close pipe in main process
+        close(fd[0]);
+        close(fd[1]);
+        
+ 		int status1, status2;
+        waitpid(pid1, &status1, 0);
+        waitpid(pid2, &status2, 0);
+        
+        if (WIFEXITED(status1))
+            return WEXITSTATUS(status1);
+        return 1;
+    }
 	else
 	{
 		ft_putstr_fd("Error: Bad arguments\n", 2);
