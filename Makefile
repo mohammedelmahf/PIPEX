@@ -18,7 +18,7 @@ SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c\
 
 $(NAME) :
 	make all -C libft	
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 
 all : $(NAME)
@@ -35,4 +35,4 @@ re : fclean all
 
 bonus : clean
 	make all -C libft
-	gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME)

@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:46:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/21 09:33:06 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:32:39 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*find_path(char *cmd, char **envp)
 	char	*part_path;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH", 4) == 0)
+	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
 		i++;
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
@@ -29,7 +29,7 @@ char	*find_path(char *cmd, char **envp)
 		part_path = ft_strjoin(paths[i], "/");
 		path = ft_strjoin(part_path, cmd);
 		free(part_path);
-		if (access(path, F_OK) == 0)
+		if (access(path, F_OK) == 0)	
 			return (path);
 		free(path);
 		i++;
@@ -47,54 +47,24 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-// void	execute(char *argv, char **env)
-// {
-// 	char	**cmd;
-// 	int		i;
-// 	char	*path;
-
-// 	i = -1;
-// 	cmd = ft_split(argv, ' ');
-// 	path = find_path(cmd[0], env);
-// 	if (!path)
-// 	{
-// 		while (cmd[++i])
-// 			free(cmd[i]);
-// 		free(cmd);
-// 		error();
-// 	}
-// 	if (execve(path, cmd, env) == -1)
-// 		error();
-		
-// }
-
-void execute(char *argv, char **env)
+void	execute(char *argv, char **env)
 {
-    char **cmd;
-    char *path;
-    int i;
+	char	**cmd;
+	int		i;
+	char	*path;
 
-    cmd = ft_split(argv, ' ');
-    if (!cmd)
-        error();
-        
-    path = find_path(cmd[0], env);
-    if (!path)
-    {
-        i = 0;
-        while (cmd[i])
-            free(cmd[i++]);
-        free(cmd);
-        error();
-    }
-    
-    if (execve(path, cmd, env) == -1)
-    {
-        free(path);
-        i = 0;
-        while (cmd[i])
-            free(cmd[i++]);
-        free(cmd);
-        error();
-    }
+	i = -1;
+	cmd = ft_split(argv, ' ');
+	path = find_path(cmd[0], env);
+	if (!path)
+	{
+		while (cmd[++i])
+			free(cmd[i]);
+		free(cmd);
+		free(path);
+		error();
+	}
+	if (execve(path, cmd, env) == -1)
+		error();
 }
+
