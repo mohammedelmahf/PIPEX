@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/21 09:27:29 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/21 23:25:45 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
 	pid_t	pid;
-
+	
 	if (argc == 5)
 	{
 		if (pipe(fd) == -1)

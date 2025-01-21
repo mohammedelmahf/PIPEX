@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:43:19 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/21 11:18:58 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/21 23:11:20 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ void	execute(char *argv, char **env);
 char	*find_path(char *cmd, char **envp);
 void	free_split(char **split);
 void	ft_free_tab(char **tab);
+
+
+
+void	exec(char *cmd, char **env);
+char	*get_path(char *cmd, char **env);
+char	*my_getenv(char *name, char **env);
 #endif

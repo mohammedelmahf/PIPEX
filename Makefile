@@ -6,13 +6,13 @@ CFLAGS = -Werror -Wall -Wextra #-g3 -fsanitize=address
 
 RM = rm -rf
 
-SRCS = 	srcs/pipex/pipex.c\
-		srcs/pipex/pipex_utils.c\
-		libft/libft.a\
+SRCS = 	srcs/pipex/pipex.c \
+		srcs/pipex/pipex_utils.c \
+		libft/libft.a
 
-SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c\
-				srcs/pipex_bonus/pipex_utils_bonus.c\
-				libft/libft.a\
+SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c \
+				srcs/pipex_bonus/pipex_utils_bonus.c \
+				libft/libft.a \
 				libft/get_next_line/get_next_line.c \
 				libft/get_next_line/get_next_line_utils.c
 
