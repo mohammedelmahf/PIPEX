@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/21 23:33:20 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:13:39 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,61 +40,39 @@ void	parent_proc(char **argv, char **env, int *fd)
 	error();
 }
 
+void	create_processes(char **argv, char **env, int *fd)
+{
+	pid_t	pid1;
+	pid_t	pid2;
+
+	pid1 = fork();
+	if (pid1 == -1)
+		error();
+	if (pid1 == 0)
+		child_proc(argv, env, fd);
+	pid2 = fork();
+	if (pid2 == -1)
+		error();
+	if (pid2 == 0)
+		parent_proc(argv, env, fd);
+	close(fd[0]);
+	close(fd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];
-	pid_t	pid1 , pid2;
-	
-	// if (argc == 5)
-	// {
-	// 	if (pipe(fd) == -1)
-	// 		error();
-	// 	pid = fork();
-	// 	if (pid == -1)
-	// 		error();
-	// 	if (pid == 0)
-	// 		child_proc(argv, env, fd);
-	// 	waitpid(pid, NULL, 0);
-	// 	parent_proc(argv, env, fd);
-	// }
-	    if (argc == 5)
-    {
-        if (pipe(fd) == -1)
-            error();
-            
-        pid1 = fork();
-        if (pid1 == -1)
-            error();
-            
-        if (pid1 == 0)
-		{
-            child_proc(argv, env, fd);
-			exit(1);
-		}
-        pid2 = fork();  // Create second process
-        if (pid2 == -1)
-            error();
-            
-        if (pid2 == 0)
-        {  
-		    parent_proc(argv, env, fd);
-			exit(1);
-		}
-        // Close pipe in main process
-        close(fd[0]);
-        close(fd[1]);
-        
- 		int status1, status2;
-        waitpid(pid1, &status1, 0);
-        waitpid(pid2, &status2, 0);
-        
-        if (WIFEXITED(status1))
-            return WEXITSTATUS(status1);
-        return 1;
-    }
-	else
+
+	if (argc != 5)
 	{
 		ft_putstr_fd("Error: Bad arguments\n", 2);
 		ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
+		return (1);
 	}
+	if (pipe(fd) == -1)
+		error();
+	create_processes(argv, env, fd);
+	return (0);
 }
