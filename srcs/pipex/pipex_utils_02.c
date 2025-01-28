@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/28 14:47:16 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:06:13 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*cat_string(char *dst, const char *src)
 	dst[len_dst + i] = '\0';
 	return (dst);
 }
-
 
 int	ft_strcmp(char *s1, char *s2)
 {

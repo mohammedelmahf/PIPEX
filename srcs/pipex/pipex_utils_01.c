@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   pipex_utils_01.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:46:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/28 14:46:42 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:06:30 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*find_path(char *cmd)
 	free(cmd_path);
 	return (NULL);
 }
+
 void	execute(char *cmd)
 {
 	char	**args;
@@ -83,4 +84,3 @@ void	free_split(char **array)
 	}
 	free(array);
 }
-

@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/28 14:45:52 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:08:36 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	main(int argc, char **argv, char **env)
 	int		fd[2];
 	int		i;
 
-	i = check_args(argc,argv);
-	check_env(argc ,argv , env ,i);
+	i = check_args(argc, argv);
+	check_env(argc, argv, env, i);
 	if (argc != 5)
 	{
 		ft_putstr_fd("Error: Bad arguments\n", 2);
