@@ -2,12 +2,13 @@ NAME = pipex
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra #-g3 -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra -g3 -fsanitize=address
 
 RM = rm -rf
 
 SRCS = 	srcs/pipex/pipex.c \
-		srcs/pipex/pipex_utils.c \
+		srcs/pipex/pipex_utils_01.c \
+		srcs/pipex/pipex_utils_02.c	\
 		libft/libft.a
 
 SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c \
