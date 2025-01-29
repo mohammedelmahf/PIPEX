@@ -12,7 +12,8 @@ SRCS = 	srcs/pipex/pipex.c \
 		libft/libft.a
 
 SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c \
-				srcs/pipex_bonus/pipex_utils_bonus.c \
+				srcs/pipex_bonus/pipex_utils_bonus_01.c \
+				srcs/pipex_bonus/pipex_utils_bonus_02.c \
 				libft/libft.a \
 				libft/get_next_line/get_next_line.c \
 				libft/get_next_line/get_next_line_utils.c

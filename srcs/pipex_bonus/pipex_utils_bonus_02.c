@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils_02.c                                   :+:      :+:    :+:   */
+/*   pipex_utils_bonus_02.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 14:47:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/29 15:55:57 by maelmahf         ###   ########.fr       */
+/*   Created: 2025/01/29 15:54:34 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/01/29 15:55:03 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
+
+void	free_split(char **array)
+{
+	int	i;
+
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
 void	close_fd(int fd1, int fd2)
 {
@@ -38,44 +53,27 @@ char	*cat_string(char *dst, const char *src)
 	return (dst);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	error(void)
 {
-	int	i;
-
-	if (!s1 || !s2)
-		return (-1);
-	i = 0;
-	while (s1[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	perror("Error");
+	exit(EXIT_FAILURE);
 }
 
-int	check_args(int argc, char **argv)
+int	open_file(char *file, int in_or_out , int tmp)
 {
-	int	expected_args;
-	int	is_here_doc;
+	int	fd;
 
-	if (argc < 2)
+	if (in_or_out == 0)
+		fd = open(file, O_RDONLY);
+	else if (in_or_out == 1)
+		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	else if (in_or_out == 2)
+		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	if (fd == -1)
 	{
-		write(2, "Invalid number of arguments\n", 28);
-		exit(3);
+		if (tmp != -1)
+			close(tmp);
+		error();
 	}
-
-	is_here_doc = 0;
-	if (ft_strcmp("here_doc", argv[1]) == 0)
-		is_here_doc = 1;
-
-	expected_args = 5;
-	if (is_here_doc)
-		expected_args = 6;
-
-	if (argc < expected_args)
-	{
-		write(2, "Invalid number of arguments\n", 28);
-		exit(3);
-	}
-
-	if (is_here_doc)
-		return (3);
-	return (2);
+	return (fd);
 }

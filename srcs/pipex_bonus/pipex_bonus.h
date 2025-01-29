@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:42:39 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/29 15:21:42 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:47:53 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,22 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-void	here_doc(char **av);
+void	close_fd(int fd1, int fd2);
+
+// Argument and string handling
+int		ft_strcmp(const char *s1, const char *s2);
+int		check_args(int argc, char **argv);
+void	free_split(char **array);
+char	*cat_string(char *dst, const char *src);
+
+// Process and command execution
 int		open_file(char *file, int in_or_out , int tmp);
-void	here_doc_put_in(char **av, int *fd);
-void	pipe_do(char *av, char **env);
+void	execute(char *argv);
+char	*find_path(char *cmd);
 void	error(void);
-char	*find_path(char *cmd, char **envp);
-void	execute(char *argv, char **env);
-void	handle_here_doc(char **av, int *fd_out);
-int		is_here_doc(char **av);
+void	create_processes(int argc, char **argv, int i);
+void	processes_pipex(int filein, char *cmd, int fileout);
+void	check_env(int ac, char **av, char **env, int i);
 
-
-int	check_args(int argc, char **argv);
-
+void	ft_here_doc(char *stop, int fd);
 #endif
