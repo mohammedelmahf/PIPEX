@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/28 16:06:13 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:13:12 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,37 +38,45 @@ char	*cat_string(char *dst, const char *src)
 	return (dst);
 }
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
 
 	if (!s1 || !s2)
-		return (0);
+		return (-1);
+
 	i = 0;
 	while (s1[i] && s1[i] == s2[i])
 		i++;
-	if (s1[i] == s2[i])
-		return (1);
-	if (s1[i] == '\n' && s2[i] == '\0')
-		return (1);
-	return (0);
+	return (s1[i] - s2[i]);
 }
 
 int	check_args(int argc, char **argv)
 {
-	int	i;
-	int	n;
+	int	expected_args;
+	int	is_here_doc;
 
-	n = 5;
-	i = ft_strcmp("here_doc", argv[1]);
-	if (i == 1)
-		n = 6;
-	if (argc < n)
+	if (argc < 2)
 	{
 		write(2, "Invalid number of arguments\n", 28);
 		exit(3);
 	}
-	if (i == 1)
+
+	is_here_doc = 0;
+	if (ft_strcmp("here_doc", argv[1]) == 0)
+		is_here_doc = 1;
+
+	expected_args = 5;
+	if (is_here_doc)
+		expected_args = 6;
+
+	if (argc < expected_args)
+	{
+		write(2, "Invalid number of arguments\n", 28);
+		exit(3);
+	}
+
+	if (is_here_doc)
 		return (3);
 	return (2);
 }

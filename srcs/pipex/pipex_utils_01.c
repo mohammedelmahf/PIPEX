@@ -6,20 +6,20 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:46:51 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/28 16:06:30 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:08:43 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	check_env(int ac, char **av, char **env, int i)
+void	check_env(int argc, char **argv, char **env, int i)
 {
 	if (*env != NULL)
 		return ;
-	while (i < ac - 1)
+	while (i < argc - 1)
 	{
 		write(2, "Command not found: ", 19);
-		write(2, av[i], ft_strlen(av[i]));
+		write(2, argv[i], ft_strlen(argv[i]));
 		write(2, "\n", 1);
 		i++;
 	}

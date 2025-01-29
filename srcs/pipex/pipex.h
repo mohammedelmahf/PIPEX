@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:43:19 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/28 16:10:54 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:11:20 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void	close_fd(int fd1, int fd2);
 
 // Argument and string handling
-int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 int		check_args(int argc, char **argv);
 void	free_split(char **array);
 char	*cat_string(char *dst, const char *src);
