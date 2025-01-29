@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/29 15:55:57 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:58:38 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,17 @@ int	check_args(int argc, char **argv)
 		write(2, "Invalid number of arguments\n", 28);
 		exit(3);
 	}
-
 	is_here_doc = 0;
 	if (ft_strcmp("here_doc", argv[1]) == 0)
 		is_here_doc = 1;
-
 	expected_args = 5;
 	if (is_here_doc)
 		expected_args = 6;
-
 	if (argc < expected_args)
 	{
 		write(2, "Invalid number of arguments\n", 28);
 		exit(3);
 	}
-
 	if (is_here_doc)
 		return (3);
 	return (2);

@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:42:39 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/29 15:47:53 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:05:13 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_split(char **array);
 char	*cat_string(char *dst, const char *src);
 
 // Process and command execution
-int		open_file(char *file, int in_or_out , int tmp);
+int		open_file(char *file, int in_or_out, int tmp);
 void	execute(char *argv);
 char	*find_path(char *cmd);
 void	error(void);

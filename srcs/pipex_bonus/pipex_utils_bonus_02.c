@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:54:34 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/29 15:55:03 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:05:44 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	error(void)
 	exit(EXIT_FAILURE);
 }
 
-int	open_file(char *file, int in_or_out , int tmp)
+int	open_file(char *file, int in_or_out, int tmp)
 {
 	int	fd;
 
