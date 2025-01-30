@@ -1,40 +1,51 @@
-NAME = pipex
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/15 16:23:30 by souaammo          #+#    #+#              #
+#    Updated: 2025/01/30 16:52:06 by maelmahf         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = gcc
-
-CFLAGS = -Werror -Wall -Wextra #-g3 -fsanitize=address
-
-RM = rm -rf
-
-SRCS = 	srcs/pipex/pipex.c \
+SRCS =	srcs/pipex/pipex.c \
 		srcs/pipex/pipex_utils_01.c \
-		srcs/pipex/pipex_utils_02.c	\
-		libft/libft.a
+		srcs/pipex/pipex_utils_02.c 
 
 SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c \
 				srcs/pipex_bonus/pipex_utils_bonus_01.c \
 				srcs/pipex_bonus/pipex_utils_bonus_02.c \
-				libft/libft.a \
-				libft/get_next_line/get_next_line.c \
-				libft/get_next_line/get_next_line_utils.c
+				get_next_line/get_next_line.c \
+				get_next_line/get_next_line_utils.c
+OBJS = $(SRCS:.c=.o)
 
-$(NAME) :
-	make all -C libft	
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+OBJS_BONUS = $(OBJS:.c=.o)
 
+CC = cc
 
-all : $(NAME)
+CFLAGS = -Wall -Wextra -Werror
 
-fclean : clean
+NAME = pipex
+
+RM = rm -rf
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
 	$(RM) $(NAME)
-	make fclean -C libft
 
-clean :
-	$(RM) $(NAME)
-	make clean -C libft
-
-re : fclean all
+re: fclean all
 
 bonus : clean
-	make all -C libft
 	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
