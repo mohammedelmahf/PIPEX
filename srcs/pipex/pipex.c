@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/30 16:52:54 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:12:55 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,36 @@ void	processes_pipex(int filein, char *cmd, int fileout)
 	}
 	else
 		wait(NULL);
+}
+
+void	check_env(int argc, char **argv, char **env, int i)
+{
+	if (*env != NULL)
+		return ;
+	while (i < argc - 1)
+	{
+		write(2, "Command not found: ", 19);
+		write(2, argv[i], ft_strlen(argv[i]));
+		write(2, "\n", 1);
+		i++;
+	}
+	exit(2);
+}
+
+char	*find_path(char *cmd)
+{
+	char	*cmd_path;
+
+	cmd_path = malloc(ft_strlen("/usr/bin/") + ft_strlen(cmd) + 1);
+	if (!cmd_path)
+		error();
+	cmd_path[0] = '\0';
+	cat_string(cmd_path, "/usr/bin/");
+	cat_string(cmd_path, cmd);
+	if (access(cmd_path, F_OK | X_OK) == 0)
+		return (cmd_path);
+	free(cmd_path);
+	return (NULL);
 }
 
 void	create_processes(int argc, char **argv, int i)

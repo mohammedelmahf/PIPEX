@@ -6,13 +6,14 @@
 #    By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/15 16:23:30 by souaammo          #+#    #+#              #
-#    Updated: 2025/01/30 16:52:06 by maelmahf         ###   ########.fr        #
+#    Updated: 2025/01/30 16:58:46 by maelmahf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	srcs/pipex/pipex.c \
 		srcs/pipex/pipex_utils_01.c \
-		srcs/pipex/pipex_utils_02.c 
+		srcs/pipex/pipex_utils_02.c \
+		srcs/pipex/pipex_utils_03.c 
 
 SRCS_BONUS = 	srcs/pipex_bonus/pipex_bonus.c \
 				srcs/pipex_bonus/pipex_utils_bonus_01.c \
