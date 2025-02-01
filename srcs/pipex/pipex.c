@@ -6,30 +6,30 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/30 17:12:55 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:45:41 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	processes_pipex(int filein, char *cmd, int fileout)
+void	processes_pipex(int filein, char *cmd, int fileout ,char **env )
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
-		error();
+		error_exit("pid failed");
 	if (pid == 0)
 	{
 		if (dup2(filein, 0) == -1)
-			error();
+			error_exit("dup2 failed");
 		if (dup2(fileout, 1) == -1)
-			error();
-		execute(cmd);
+			error_exit("dup2 failed");
+		execute(cmd , env);
 		exit(7);
 	}
-	else
-		wait(NULL);
+	// else
+	// 	wait(NULL);
 }
 
 void	check_env(int argc, char **argv, char **env, int i)
@@ -46,23 +46,22 @@ void	check_env(int argc, char **argv, char **env, int i)
 	exit(2);
 }
 
-char	*find_path(char *cmd)
-{
-	char	*cmd_path;
+// char	*find_path(char *cmd)
+// {
+// 	char	*cmd_path;
+// 	cmd_path = malloc(ft_strlen("/usr/bin/") + ft_strlen(cmd) + 1);
+// 	if (!cmd_path)
+// 		exit(1);
+// 	cmd_path[0] = '\0';
+// 	cat_string(cmd_path, "/usr/bin/");
+// 	cat_string(cmd_path, cmd);
+// 	if (access(cmd_path, F_OK | X_OK) == 0)
+// 		return (cmd_path);
+// 	free(cmd_path);
+// 	return (NULL);
+// }
 
-	cmd_path = malloc(ft_strlen("/usr/bin/") + ft_strlen(cmd) + 1);
-	if (!cmd_path)
-		error();
-	cmd_path[0] = '\0';
-	cat_string(cmd_path, "/usr/bin/");
-	cat_string(cmd_path, cmd);
-	if (access(cmd_path, F_OK | X_OK) == 0)
-		return (cmd_path);
-	free(cmd_path);
-	return (NULL);
-}
-
-void	create_processes(int argc, char **argv, int i)
+void	create_processes(int argc, char **argv, int i ,char **env)
 {
 	int	filein;
 	int	fileout;
@@ -70,21 +69,41 @@ void	create_processes(int argc, char **argv, int i)
 
 	filein = open(argv[1], O_RDONLY);
 	if (filein == -1)
-		error();
+		error_exit("File error");
 	while (i < argc - 2)
 	{
 		if (pipe(pipe_fd) == -1)
-			error();
-		processes_pipex(filein, argv[i], pipe_fd[1]);
+			error_exit("Pipe failed");
+		processes_pipex(filein, argv[i], pipe_fd[1] , env);
 		close(pipe_fd[1]);
 		filein = pipe_fd[0];
 		i++;
 	}
+
 	fileout = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fileout == -1)
-		error();
-	processes_pipex(filein, argv[i], fileout);
+		error_exit("Output file error");
+	processes_pipex(filein, argv[i], fileout , env);
 	close_fd(filein, fileout);
+	while(wait(NULL) > 0)
+	{
+	}
+}
+
+void execute(char *cmd, char **env)
+{
+    char **args = ft_split(cmd, ' ');
+    char *path = find_path(args[0], env);
+
+    if (!args || !path)
+    {
+        free_split(args);
+        error_exit("Command not found");
+    }
+    execve(path, args, env);
+    free(path);
+    free_split(args);
+    error_exit("Execution failed");
 }
 
 int	main(int argc, char **argv, char **env)
@@ -101,8 +120,8 @@ int	main(int argc, char **argv, char **env)
 		return (1);
 	}
 	if (pipe(fd) == -1)
-		error();
+		error_exit("pipe failed");
 	i = 2;
-	create_processes(argc, argv, i);
+	create_processes(argc, argv, i , env);
 	return (0);
 }
