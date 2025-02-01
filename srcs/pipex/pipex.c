@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/31 19:45:41 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:46:57 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	processes_pipex(int filein, char *cmd, int fileout ,char **env )
 		execute(cmd , env);
 		exit(7);
 	}
-	// else
-	// 	wait(NULL);
 }
 
 void	check_env(int argc, char **argv, char **env, int i)
@@ -45,21 +43,6 @@ void	check_env(int argc, char **argv, char **env, int i)
 	}
 	exit(2);
 }
-
-// char	*find_path(char *cmd)
-// {
-// 	char	*cmd_path;
-// 	cmd_path = malloc(ft_strlen("/usr/bin/") + ft_strlen(cmd) + 1);
-// 	if (!cmd_path)
-// 		exit(1);
-// 	cmd_path[0] = '\0';
-// 	cat_string(cmd_path, "/usr/bin/");
-// 	cat_string(cmd_path, cmd);
-// 	if (access(cmd_path, F_OK | X_OK) == 0)
-// 		return (cmd_path);
-// 	free(cmd_path);
-// 	return (NULL);
-// }
 
 void	create_processes(int argc, char **argv, int i ,char **env)
 {
