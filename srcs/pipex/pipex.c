@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 14:38:23 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:40:11 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_env(int argc, char **argv, char **env, int i)
 	exit(2);
 }
 
-void	create_processes(int argc, char **argv, int i ,char **env)
+void	create_processes(int argc, char **argv, int i, char **env)
 {
 	int	filein;
 	int	fileout;
@@ -57,36 +57,38 @@ void	create_processes(int argc, char **argv, int i ,char **env)
 	{
 		if (pipe(pipe_fd) == -1)
 			error_exit("Pipe failed");
-		processes_pipex(filein, argv[i], pipe_fd[1] , env);
+		processes_pipex(filein, argv[i], pipe_fd[1], env);
 		close(pipe_fd[1]);
 		filein = pipe_fd[0];
 		i++;
 	}
-
 	fileout = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fileout == -1)
 		error_exit("Output file error");
-	processes_pipex(filein, argv[i], fileout , env);
+	processes_pipex(filein, argv[i], fileout, env);
 	close_fd(filein, fileout);
-	while(wait(NULL) > 0)
-	{
-	}
+	while (wait(NULL) > 0)
+		;
 }
 
-void execute(char *cmd, char **env)
+void	execute(char *cmd, char **env)
 {
-    char **args = ft_split(cmd, ' ');
-    char *path = find_path(args[0], env);
+	char	**args;
+	char	*path;
 
-    if (!args || !path)
-    {
-        free_split(args);
-        error_exit("Command not found");
-    }
-    execve(path, args, env);
-    free(path);
-    free_split(args);
-    error_exit("Execution failed");
+	args = ft_split(cmd, ' ');
+	if (!args)
+		error_exit("Command not found");
+	path = find_path(args[0], env);
+	if (!path)
+	{
+		free_split(args);
+		error_exit("Command not found");
+	}
+	execve(path, args, env);
+	free(path);
+	free_split(args);
+	error_exit("Execution failed");
 }
 
 int	main(int argc, char **argv, char **env)
@@ -105,6 +107,6 @@ int	main(int argc, char **argv, char **env)
 	if (pipe(fd) == -1)
 		error_exit("pipe failed");
 	i = 2;
-	create_processes(argc, argv, i , env);
+	create_processes(argc, argv, i, env);
 	return (0);
 }

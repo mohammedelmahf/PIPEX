@@ -6,12 +6,11 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:59:00 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/30 16:30:46 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 15:00:25 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../srcs/pipex_bonus/pipex_bonus.h"
-
 
 int	ft_strchr(const char *str, char c)
 {

@@ -1,98 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils_bonus_02.c                             :+:      :+:    :+:   */
+/*   pipex_bonus_utils_04.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 15:54:34 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 14:23:54 by maelmahf         ###   ########.fr       */
+/*   Created: 2025/02/01 14:51:21 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/02/01 14:52:21 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-void	free_split(char **array)
-{
-	int	i;
-
-	if (!array)
-		return ;
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
-void	close_fd(int fd1, int fd2)
-{
-	if (fd1 != -1)
-		close(fd1);
-	if (fd2 != -1)
-		close(fd2);
-}
-
-char	*cat_string(char *dst, const char *src)
-{
-	size_t	i;
-	size_t	len_dst;
-
-	if (!dst || !src)
-		return (NULL);
-	len_dst = ft_strlen(dst);
-	i = 0;
-	while (src[i])
-	{
-		dst[len_dst + i] = src[i];
-		i++;
-	}
-	dst[len_dst + i] = '\0';
-	return (dst);
-}
-
-void	error_exit(const char *msg)
-{
-	perror(msg);
-	exit(EXIT_FAILURE);
-}
-
-int	open_file(int in_or_out, char *file, int tmp)
-{
-	int	fd;
-
-	if (in_or_out == 0)
-		fd = open(file, O_RDONLY);
-	else if (in_or_out == 1)
-		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	else if (in_or_out == 2)
-		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	if (fd == -1)
-	{
-		if (tmp != -1)
-			close(tmp);
-		error_exit("Error open file");
-	}
-	return (fd);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (fd >= 0 && s)
-		write(fd, s, ft_strlen(s));
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 char	**ft_split2(char **res, const char *s, char c)
 {
@@ -192,43 +110,4 @@ int	ft_word_count(const char *str, char c)
 		}
 	}
 	return (count);
-}
-
-char	*ft_strdup(const char *str)
-{
-	size_t	i;
-	char	*res;
-
-	res = (char *)malloc(sizeof(char) + (ft_strlen(str) + 1));
-	if (!res)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		res[i] = str[i];
-		i++;
-	}
-	res[i] = '\0';
-	return (res);
-}
-
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t			index;
-	unsigned char	*ss1;
-	unsigned char	*ss2;
-
-	index = 0;
-	ss1 = (unsigned char *)s1;
-	ss2 = (unsigned char *)s2;
-	while (*ss1 && *ss2 && *ss1 == *ss2 && index < n)
-	{
-		ss1++;
-		ss2++;
-		index++;
-	}
-	if (index == n)
-		return (0);
-	return (*ss1 - *ss2);
 }

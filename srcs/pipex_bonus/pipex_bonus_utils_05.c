@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   piipex_utils_03.c                                  :+:      :+:    :+:   */
+/*   pipex_bonus_utils_05.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/01 14:34:17 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 14:35:00 by maelmahf         ###   ########.fr       */
+/*   Created: 2025/02/01 14:52:45 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/02/01 14:57:53 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
+
+char	*ft_strdup(const char *str)
+{
+	size_t	i;
+	char	*res;
+
+	res = (char *)malloc(sizeof(char) + (ft_strlen(str) + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t			index;
@@ -29,42 +48,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	if (index == n)
 		return (0);
 	return (*ss1 - *ss2);
-}
-
-char *ft_strcpy(char *dst, const char *src)
-{
-    size_t i = 0;
-
-    if (!dst || !src)
-        return (NULL);
-    while (src[i])
-    {
-        dst[i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
-    return (dst);
-}
-
-
-char *ft_strcat(char *dst, const char *src)
-{
-    size_t i = 0;
-    size_t len_dst = ft_strlen(dst);
-
-    if (!dst || !src)
-        return (NULL);
-    while (src[i])
-    {
-        dst[len_dst + i] = src[i];
-        i++;
-    }
-    dst[len_dst + i] = '\0';
-    return (dst);
-}
-
-void	error_exit(const char *msg)
-{
-	perror(msg);
-	exit(EXIT_FAILURE);
 }

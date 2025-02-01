@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 14:34:25 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:45:20 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,22 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	if (fd >= 0 && s)
 		write(fd, s, ft_strlen(s));
+}
+
+char	*ft_strdup(const char *str)
+{
+	size_t	i;
+	char	*res;
+
+	res = (char *)malloc(sizeof(char) + (ft_strlen(str) + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }

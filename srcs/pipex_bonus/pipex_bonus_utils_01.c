@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils_01.c                                   :+:      :+:    :+:   */
+/*   pipex_bonus_utils_01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/01 14:44:19 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 14:44:58 by maelmahf         ###   ########.fr       */
+/*   Created: 2025/01/13 08:46:26 by maelmahf          #+#    #+#             */
+/*   Updated: 2025/02/01 14:59:24 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 int	check_path_access(char *cmd)
 {
@@ -68,17 +68,18 @@ char	*find_path(char *cmd, char **env)
 	return (NULL);
 }
 
-void	free_split(char **array)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	int	i;
+	size_t	i;
 
-	if (!array)
-		return ;
 	i = 0;
-	while (array[i])
+	if (!dst || !src)
+		return (NULL);
+	while (src[i])
 	{
-		free(array[i]);
+		dst[i] = src[i];
 		i++;
 	}
-	free(array);
+	dst[i] = '\0';
+	return (dst);
 }
