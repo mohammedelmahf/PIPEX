@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:01:50 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/30 17:18:27 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:26:21 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	free_split(char **array);
 char	*cat_string(char *dst, const char *src);
 
 // Process and command execution
-void	execute(char *argv);
-char	*find_path(char *cmd);
-void	error(void);
-void	create_processes(int argc, char **argv, int i);
-void	processes_pipex(int filein, char *cmd, int fileout);
+void    execute(char *cmd, char **env);
+char	*find_path(char *cmd , char **env);
+void	error_exit(const char *msg);
+void	create_processes(int argc, char **argv, int i , char **env);
+void	processes_pipex(int filein, char *cmd, int fileout ,char **env );
 void	check_env(int ac, char **av, char **env, int i);
 void	ft_putstr_fd(char *s, int fd);
 
@@ -51,7 +51,9 @@ char	*ft_strdup(const char *str);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strchr(const char *str, char c);
-int		open_file(char *file, int in_or_out, int tmp);
+int		open_file(int in_or_out, char *file, int tmp);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char *ft_strcpy(char *dst, const char *src);
+char *ft_strcat(char *dst, const char *src);
 
 #endif

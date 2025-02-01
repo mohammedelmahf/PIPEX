@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:54:34 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/01/30 16:53:21 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:23:54 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ char	*cat_string(char *dst, const char *src)
 	return (dst);
 }
 
-void	error(void)
+void	error_exit(const char *msg)
 {
-	perror("Error");
+	perror(msg);
 	exit(EXIT_FAILURE);
 }
 
-int	open_file(char *file, int in_or_out, int tmp)
+int	open_file(int in_or_out, char *file, int tmp)
 {
 	int	fd;
 
@@ -73,7 +73,7 @@ int	open_file(char *file, int in_or_out, int tmp)
 	{
 		if (tmp != -1)
 			close(tmp);
-		error();
+		error_exit("Error open file");
 	}
 	return (fd);
 }

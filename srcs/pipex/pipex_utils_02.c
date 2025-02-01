@@ -6,7 +6,7 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 14:47:04 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 13:49:54 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:34:25 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,6 @@ void	close_fd(int fd1, int fd2)
 	if (fd2 != -1)
 		close(fd2);
 }
-
-// char	*cat_string(char *dst, const char *src)
-// {
-// 	size_t	i;
-// 	size_t	len_dst;
-
-// 	if (!dst || !src)
-// 		return (NULL);
-// 	len_dst = ft_strlen(dst);
-// 	i = 0;
-// 	while (src[i])
-// 	{
-// 		dst[len_dst + i] = src[i];
-// 		i++;
-// 	}
-// 	dst[len_dst + i] = '\0';
-// 	return (dst);
-// }
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

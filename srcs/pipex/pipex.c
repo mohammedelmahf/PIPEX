@@ -6,13 +6,13 @@
 /*   By: maelmahf <maelmahf@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:17:13 by maelmahf          #+#    #+#             */
-/*   Updated: 2025/02/01 13:46:57 by maelmahf         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:38:23 by maelmahf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	processes_pipex(int filein, char *cmd, int fileout ,char **env )
+void	processes_pipex(int filein, char *cmd, int fileout, char **env)
 {
 	pid_t	pid;
 
@@ -25,7 +25,7 @@ void	processes_pipex(int filein, char *cmd, int fileout ,char **env )
 			error_exit("dup2 failed");
 		if (dup2(fileout, 1) == -1)
 			error_exit("dup2 failed");
-		execute(cmd , env);
+		execute(cmd, env);
 		exit(7);
 	}
 }

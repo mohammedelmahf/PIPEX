@@ -51,12 +51,6 @@ char *find_path(char *cmd, char **env)
     return (NULL);
 }
 
-void	error_exit(const char *msg)
-{
-	perror(msg);
-	exit(EXIT_FAILURE);
-}
-
 void	free_split(char **array)
 {
 	int	i;
